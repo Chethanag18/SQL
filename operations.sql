@@ -1,0 +1,53 @@
+create database emp_details;
+use emp_details;
+create table employee_info(id int primary key,emp_name varchar(30) not null,e_salary bigint,
+e_address varchar(30) unique,e_age int,constraint salary check(e_salary>20000));
+desc employee_info;
+insert into employee_info values(1,'Chethana',30000,'Jayanagar',22);
+insert into employee_info values(11,'Bhagya',60000,'Mnyatha tech park',22);
+insert into employee_info values(21,'Meghana',35000,'navyanagar',24);
+insert into employee_info values(31,'Chandana',56000,'Shakthinagar',27);
+insert into employee_info values(41,'Latha',67000,'Harihara',33);
+insert into employee_info values(51,'Pushaa',70000,'Mysore',43);
+insert into employee_info values(61,'Gadigesh',450000,'Davanagere',53);
+insert into employee_info values(71,'Vijay',45000,'Bijapur',50);
+insert into employee_info values(81,'Kumar',50000,'Hubbli',49);
+insert into employee_info values(44,'Sujatha',25000,'Dharwad',35);
+select* from employee_info;
+select * from employee_info where id between 1 and 44;
+select * from employee_info order by emp_name like 'h%';
+select * from employee_info order by e_address like '_h%d';
+select * from employee_info order by id;
+select * from employee_info order by id desc;
+select lower(emp_name) from employee_info;
+select upper(emp_name) from employee_info;
+select concat(emp_name,e_address) from employee_info;
+select length(emp_name) from employee_info;
+create index emplo_det on employee_info(emp_name);
+show indexes from employee_info;
+create table student(id int primary key,s_name varchar(30) not null,s_age int,
+e_address varchar(30),foreign key(e_address) references employee_info(e_address),
+hobbies varchar(40) unique,constraint age_student check(s_age>6));
+desc student;
+insert into student values(1,'Chethana',7,'Jayanagar','Gardening');
+insert into student values(2,'Bhagya',8,'navyanagar','Cooking');
+insert into student values(3,'Chandana',9,'Mnyatha tech park','walking');
+insert into student values(4,'Meghana',7,'Harihara','dancing');
+insert into student values(5,'Vishal',8,'Dharwad','swimming');
+insert into student values(8,'Vikranth',9,'Mysore','palying');
+insert into student values(11,'Arora',10,'Bijapur','Running');
+insert into student values(17,'Shradha',11,'Hubbli','Chess');
+insert into student values(21,'Ananaya',18,'Shakthinagar','Baking');
+insert into student values(51,'Deepika',16,'Davanagere','learning');
+select * from student where id between 1 and 51;
+select * from student order by s_name like '_e%';
+select * from student order by e_address like '_h%d';
+select * from student order by id;
+select lower(s_name) from student;
+select upper(s_name) from student;
+select concat(s_name,s_age) from student;
+select length(s_name) from student;
+create index stu_details on student(s_name);
+show indexes from student;
+select * from student;
+
